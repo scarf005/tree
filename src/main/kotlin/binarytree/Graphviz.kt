@@ -1,9 +1,9 @@
 package binarytree
 
-import guru.nidi.graphviz.attribute.Arrow
+import guru.nidi.graphviz.attribute.Color
+import guru.nidi.graphviz.attribute.Font
 import guru.nidi.graphviz.attribute.Label
-import guru.nidi.graphviz.attribute.Rank
-import guru.nidi.graphviz.attribute.Rank.RankDir.TOP_TO_BOTTOM
+import guru.nidi.graphviz.attribute.Style
 import guru.nidi.graphviz.engine.Graphviz
 import guru.nidi.graphviz.graph
 import guru.nidi.graphviz.invoke
@@ -29,8 +29,13 @@ private fun <T : Comparable<T>> MutableGraph.addNode(node: BinaryTree<T>): Mutab
 
 fun <T : Comparable<T>> BinaryTree<T>.toGraphviz(): Graphviz =
     graph(directed = true) {
-        edge[Arrow.NORMAL]
-        graph[Rank.dir(TOP_TO_BOTTOM)]
+        node[
+            Color.DARKSLATEGRAY,
+            "fillcolor" eq "azure2",
+            Font.name("Ubuntu Mono"),
+            Font.size(20),
+            Style.FILLED,
+        ]
     }
         .addNode(this)
         .toGraphviz()
