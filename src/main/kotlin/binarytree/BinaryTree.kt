@@ -19,6 +19,12 @@ data class BinaryTree<T : Comparable<T>>(
         }
     }
 
+    fun find(target: T): BinaryTree<T>? = when {
+        value == target -> this
+        value > target -> left?.find(target)
+        else -> right?.find(target)
+    }
+
     companion object {
         fun <T : Comparable<T>> of(vararg values: T): BinaryTree<T> =
             values.fold(BinaryTree(values.first())) { acc, value -> acc + value }
